@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
+    kotlin("plugin.serialization") version "2.2.0"
     application
 }
 
@@ -26,4 +27,5 @@ dependencies {
     testImplementation(libs.kotlin.testJunit)
     implementation("io.ktor:ktor-server-content-negotiation")  // json serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json")  // json serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
 }
