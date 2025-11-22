@@ -5,7 +5,7 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 
 fun Route.postRoutes() {
-    get("/posts/test") {
+    get("/posts/{id}") {
         call.respondText("Test")
     }
 }
