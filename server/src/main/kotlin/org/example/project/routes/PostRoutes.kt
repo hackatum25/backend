@@ -15,7 +15,8 @@ fun Route.postRoutes() {
     val postsRepository = PostsRepository()
 
     get("/posts") {
-
+        val posts: List<ExtendedPost> = postsRepository.allPosts()
+        call.respond(posts)
     }
 
     get("/posts/{id}") {
@@ -28,5 +29,4 @@ fun Route.postRoutes() {
         postsRepository.newPost(post)
         call.respond(status = HttpStatusCode.Created, message = post)
     }
-
 }
