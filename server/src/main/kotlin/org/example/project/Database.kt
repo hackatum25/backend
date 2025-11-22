@@ -1,7 +1,7 @@
 package org.example.project
 
 import org.example.project.db.PostTable
-import org.example.project.db.Ratings
+import org.example.project.db.RatingTable
 import org.example.project.db.UserTable
 import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
@@ -16,7 +16,7 @@ fun init_db(){
         password = POSTGRES_PASSWORD
     )
     transaction {
-        SchemaUtils.create(PostTable, UserTable, Ratings)
+        SchemaUtils.create(PostTable, UserTable, RatingTable)
     }
     println("Connected to database")
 }
