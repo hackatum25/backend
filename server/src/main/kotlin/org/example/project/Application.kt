@@ -10,6 +10,7 @@ import org.example.project.routes.postRoutes
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.Serializable
+import org.example.project.routes.ratingRoutes
 import org.example.project.routes.userRoutes
 
 fun main() {
@@ -40,5 +41,6 @@ fun Application.module() {
         }
         postRoutes()
         userRoutes()
+        ratingRoutes()
     }
 }
