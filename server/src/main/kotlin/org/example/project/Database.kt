@@ -12,6 +12,11 @@ import org.jetbrains.exposed.v1.core.Table
 //    password = "secret"
 //)
 
-fun init_db(url: String){
-    Database.connect("jdbc:postgresql:$url", driver = "org.postgresql.Driver")
+fun init_db(){
+    Database.connect(
+        url = "jdbc:postgresql:${POSTGRES_HOST}:${POSTGRES_PORT}",
+        driver = "org.postgresql.Driver",
+        user = POSTGRES_USER,
+        password = POSTGRES_PASSWORD
+    )
 }
