@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:18.1-alpine
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_USER=munich
+      - POSTGRES_PASSWORD=pw1234
+      - POSTGRES_DB=munich
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - postgres
+
+  adminer:
+    image: adminer:5.4.1
+    restart: always
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    ports:
+      - 8080:8080
+    networks:
+      - postgres
+
+volumes:
+  db:
+
+networks:
+  postgres:
