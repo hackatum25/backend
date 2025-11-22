@@ -15,14 +15,18 @@ fun Route.postRoutes() {
     val postsRepository = PostsRepository()
 
     get("/posts") {
-        val posts: List<ExtendedPost> = postsRepository.allPosts()
-        call.respond(posts)
+        requireLogin(call)?.let {
+            val posts: List<ExtendedPost> = postsRepository.allPosts(it)
+            call.respond(posts)
+        }
     }
 
     get("/posts/{id}") {
-        val id: Int by call.parameters
-        val extendedPost: ExtendedPost = postsRepository.getPost(id)
-        call.respond(extendedPost)
+        val postID: Int by call.parameters
+        requireLogin(call)?.let {
+            val extendedPost: ExtendedPost = postsRepository.getPost(postID, it)
+            call.respond(extendedPost)
+        }
     }
     post("/posts"){
         val post = call.receive<Post>()

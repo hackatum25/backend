@@ -7,12 +7,12 @@ import org.jetbrains.exposed.v1.jdbc.transactions.suspendTransaction
 import org.example.project.model.Post
 
 class PostsRepository {
-    suspend fun allPosts(): List<ExtendedPost> = suspendTransaction {
-        PostDAO.all().map { daoToModel(it) }
+    suspend fun allPosts(userID: Int): List<ExtendedPost> = suspendTransaction {
+        PostDAO.all().map { daoToModel(it, userID) }
     }
 
-    suspend fun getPost(postId: Int): ExtendedPost = suspendTransaction {
-        daoToModel(PostDAO[postId])
+    suspend fun getPost(postId: Int, userID: Int): ExtendedPost = suspendTransaction {
+        daoToModel(PostDAO[postId], userID)
     }
 
     suspend fun newPost(post: Post) : Int = suspendTransaction {

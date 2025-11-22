@@ -25,12 +25,12 @@ class PostDAO(id: EntityID<Int>) : IntEntity(id) {
     var createdAt by PostTable.createdAt
 }
 
-fun daoToModel(dao: PostDAO) = ExtendedPost(
+fun daoToModel(dao: PostDAO, userID: Int) = ExtendedPost(
     dao.title,
     dao.description,
     dao.createdAt,
     RatingDAO.find { (RatingTable.rating eq 1) and (RatingTable.post eq dao.id) }.count().toInt(),
     RatingDAO.find { (RatingTable.rating eq 1) and (RatingTable.post eq dao.id) }.count().toInt(),
-    RatingDAO.find { (RatingTable.user eq 1) and (RatingTable.post eq dao.id) }.firstOrNull()?.rating
+    RatingDAO.find { (RatingTable.user eq userID) and (RatingTable.post eq dao.id) }.firstOrNull()?.rating
 )
 

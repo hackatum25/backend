@@ -29,4 +29,5 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation")  // json serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json")  // json serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json")
+    implementation("io.ktor:ktor-server-sessions") // sessions
 }
