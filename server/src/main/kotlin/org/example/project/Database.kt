@@ -1,23 +1,25 @@
 package org.example.project
 
-// import org.jetbrains.kotlinx.dataframe.io.DbConnectionConfig
 import org.jetbrains.exposed.v1.jdbc.Database
-import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 
-//val dbConfig = DbConnectionConfig(
-//    url = "jdbc:postgresql://localhost:5432/mydb",
-//    user = "postgres",
-//    password = "secret"
-//)
+
+
+
+
 
 fun init_db(){
     Database.connect(
-        url = "jdbc:postgresql:${POSTGRES_HOST}:${POSTGRES_PORT}",
+        url = "jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}",
         driver = "org.postgresql.Driver",
         user = POSTGRES_USER,
         password = POSTGRES_PASSWORD
     )
-    SchemaUtils.create(Posts)
+    transaction {
+        SchemaUtils.create(Posts)
+    }
+    println("Connected to database")
 }
+
