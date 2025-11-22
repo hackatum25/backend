@@ -1,6 +1,5 @@
 package org.example.project.repositories
 
-import org.example.project.db.PostDAO
 import org.example.project.db.PostTable
 import org.example.project.db.RatingDAO
 import org.example.project.db.RatingTable.post

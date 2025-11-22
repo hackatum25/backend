@@ -17,8 +17,8 @@ class UserDAO(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<UserDAO>(UserTable)
 
     var email by UserTable.email
-
-
+    var firstName by UserTable.firstName
+    var lastName by UserTable.lastName
 }
 
 fun findIdByUsername(user: String) : Int? {

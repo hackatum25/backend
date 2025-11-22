@@ -1,5 +1,6 @@
 package org.example.project.db
 
+import kotlinx.datetime.LocalDateTime
 import org.example.project.LONG_STRING_LENGTH
 import org.example.project.SHORT_STRING_LENGTH
 import org.example.project.model.ExtendedPost
@@ -22,7 +23,7 @@ class PostDAO(id: EntityID<Int>) : IntEntity(id) {
 
     var title by PostTable.title
     var description by PostTable.description
-    var createdAt by PostTable.createdAt
+    var createdAt: LocalDateTime by PostTable.createdAt
 }
 
 fun daoToModel(dao: PostDAO, userID: Int) = ExtendedPost(
