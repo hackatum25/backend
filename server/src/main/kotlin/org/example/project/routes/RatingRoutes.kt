@@ -18,19 +18,14 @@ fun Route.ratingRoutes() {
 
     post("/posts/{id}/vote"){
         val rating = call.receive<Rating>()
-        val userSession = call.sessions.get<UserSession>()
-        if (userSession == null){
-            call.respond(HttpStatusCode.BadRequest, "Not logged in")
-        } else {
-            val userID = userSession.userId
-            val existing = ratingRepository.getRating(rating.post, userID)
+        requireLogin(call)?.let {
+            val existing = ratingRepository.getRating(rating.post, it)
             if(existing != null){
                 ratingRepository.updateRating(existing, rating.rating)
             } else {
-                ratingRepository.newRating(rating, userID)
+                ratingRepository.newRating(rating, it)
             }
+            call.respond(HttpStatusCode.OK)
         }
-        call.respond(HttpStatusCode.OK)
     }
-
 }
