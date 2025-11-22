@@ -27,6 +27,7 @@ class PostDAO(id: EntityID<Int>) : IntEntity(id) {
 }
 
 fun daoToModel(dao: PostDAO, userID: Int) = ExtendedPost(
+    dao.id.value,
     dao.title,
     dao.description,
     dao.createdAt,
