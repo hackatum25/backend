@@ -14,7 +14,6 @@ application {
 }
 
 dependencies {
-    
     implementation(libs.logback)
     implementation(libs.ktor.serverCore)
     implementation(libs.ktor.serverNetty)
@@ -25,4 +24,6 @@ dependencies {
     implementation("org.postgresql:postgresql:42.7.3")
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
+    implementation("io.ktor:ktor-server-content-negotiation")  // json serialization
+    implementation("io.ktor:ktor-serialization-kotlinx-json")  // json serialization
 }
