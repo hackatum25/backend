@@ -22,9 +22,9 @@ fun Route.postRoutes() {
     }
 
     get("/posts/{id}") {
-        val postID: Int by call.parameters
+        val id: Int by call.parameters
         requireLogin(call)?.let {
-            val extendedPost: ExtendedPost = postsRepository.getPost(postID, it)
+            val extendedPost: ExtendedPost = postsRepository.getPost(id, it)
             call.respond(extendedPost)
         }
     }

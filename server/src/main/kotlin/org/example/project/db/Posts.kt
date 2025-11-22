@@ -32,7 +32,7 @@ fun daoToModel(dao: PostDAO, userID: Int) = ExtendedPost(
     dao.description,
     dao.createdAt,
     RatingDAO.find { (RatingTable.rating eq 1) and (RatingTable.post eq dao.id) }.count().toInt(),
-    RatingDAO.find { (RatingTable.rating eq 1) and (RatingTable.post eq dao.id) }.count().toInt(),
+    RatingDAO.find { (RatingTable.rating eq -1) and (RatingTable.post eq dao.id) }.count().toInt(),
     RatingDAO.find { (RatingTable.user eq userID) and (RatingTable.post eq dao.id) }.firstOrNull()?.rating
 )
 
