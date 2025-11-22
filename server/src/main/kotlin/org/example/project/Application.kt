@@ -8,6 +8,9 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.example.project.routes.postRoutes
 import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.sessions.*
+import kotlinx.serialization.Serializable
+import org.example.project.routes.userRoutes
 
 fun main() {
     init_db()
@@ -19,14 +22,23 @@ fun main() {
     ).start(wait = true)
 }
 
+@Serializable
+data class UserSession(val userId: Int)
+
 fun Application.module() {
     install(ContentNegotiation) {
         json()
+    }
+    install(Sessions){
+        cookie<UserSession>("user_session", SessionStorageMemory()) {
+            cookie.path = "/"
+        }
     }
     routing {
         get("/") {
             call.respondText("Ktor: ${Greeting().greet()}")
         }
         postRoutes()
+        userRoutes()
     }
 }
