@@ -14,11 +14,11 @@ import org.example.project.routes.ratingRoutes
 import org.example.project.routes.userRoutes
 
 fun main() {
-    init_db()
+    initDB()
     embeddedServer(
         Netty,
         port = SERVER_PORT,
-        host = "131.159.211.132",
+        host = "localhost",
         module = Application::module
     ).start(wait = true)
 }

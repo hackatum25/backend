@@ -9,7 +9,7 @@ import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 
-fun init_db(){
+fun initDB(resetDB: Boolean = false){
     Database.connect(
         url = "jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}",
         driver = "org.postgresql.Driver",
@@ -17,6 +17,7 @@ fun init_db(){
         password = POSTGRES_PASSWORD
     )
     transaction {
+        if (resetDB) SchemaUtils.drop(TagTable, RatingTable, UserTable, PostTable)
         SchemaUtils.create(PostTable, UserTable, RatingTable, TagTable)
     }
     println("Connected to database")
