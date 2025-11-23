@@ -11,6 +11,8 @@ object UserTable : IntIdTable() {
     val email = varchar("email", SHORT_STRING_LENGTH).uniqueIndex()
     val firstName = varchar("first_name", SHORT_STRING_LENGTH)
     val lastName = varchar("last_name", SHORT_STRING_LENGTH)
+
+    val verified = bool("verified")
 }
 
 class UserDAO(id: EntityID<Int>) : IntEntity(id) {
@@ -19,6 +21,8 @@ class UserDAO(id: EntityID<Int>) : IntEntity(id) {
     var email by UserTable.email
     var firstName by UserTable.firstName
     var lastName by UserTable.lastName
+
+    var verified by UserTable.verified
 }
 
 fun findIdByUsername(user: String) : Int? {
