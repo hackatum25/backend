@@ -33,7 +33,7 @@ class PostDAO(id: EntityID<Int>) : IntEntity(id) {
 fun fullName(dao: PostDAO): String {
     var row = UserDAO.findById(dao.createdBy)
     if (row == null) {return ""} else {
-        return row.firstName + row.lastName
+        return row.firstName + " " + row.lastName
     }
 }
 
