@@ -6,6 +6,7 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
+import io.ktor.server.util.getValue
 import org.example.project.model.ExtendedPost
 import org.example.project.model.Post
 import org.example.project.repositories.PostsRepository
@@ -21,12 +22,10 @@ fun Route.postRoutes() {
     }
 
     get("/posts/{id}") {
-        val postID: Int? = call.parameters["id"]?.toInt()
-        if(postID != null) {
-            requireLogin(call)?.let {
-                val extendedPost: ExtendedPost = postsRepository.getPost(postID, it)
-                call.respond(extendedPost)
-            }
+        val id: Int by call.parameters
+        requireLogin(call)?.let {
+            val extendedPost: ExtendedPost = postsRepository.getPost(id, it)
+            call.respond(extendedPost)
         }
     }
     post("/posts"){
