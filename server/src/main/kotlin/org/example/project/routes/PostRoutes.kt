@@ -6,10 +6,13 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
+import io.ktor.server.sessions.get
+import io.ktor.server.sessions.sessions
 import io.ktor.server.util.getValue
 import org.example.project.model.ExtendedPost
 import org.example.project.model.Post
 import org.example.project.repositories.PostsRepository
+import org.example.project.UserSession
 
 fun Route.postRoutes() {
     val postsRepository = PostsRepository()
@@ -30,7 +33,15 @@ fun Route.postRoutes() {
     }
     post("/posts"){
         val post = call.receive<Post>()
-        postsRepository.newPost(post)
-        call.respond(status = HttpStatusCode.Created, message = post)
+        requireLogin(call)?.let {
+            val userID = call.sessions.get<UserSession>()?.userId
+            if(userID == null){
+                call.respond(HttpStatusCode.BadRequest, "Not logged in")
+            } else {
+                postsRepository.newPost(post, userID)
+                call.respond(status = HttpStatusCode.Created, message = post)
+            }
+        }
+
     }
 }
