@@ -17,6 +17,7 @@ import org.example.project.UserSession
 fun Route.postRoutes() {
     val postsRepository = PostsRepository()
 
+
     get("/posts") {
         requireLogin(call)?.let {
             val posts: List<ExtendedPost> = postsRepository.allPosts(it)
@@ -38,7 +39,8 @@ fun Route.postRoutes() {
             if(userID == null){
                 call.respond(HttpStatusCode.BadRequest, "Not logged in")
             } else {
-                postsRepository.newPost(post, userID)
+                val postDAO = postsRepository.newPost(post, userID)
+                postsRepository.addTags(postDAO.id, post.tags)
                 call.respond(status = HttpStatusCode.Created, message = post)
             }
         }
