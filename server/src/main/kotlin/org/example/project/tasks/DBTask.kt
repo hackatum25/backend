@@ -63,23 +63,28 @@ fun main() {
         }
 
         val post1 = PostDAO.new {
-            title = "Election Results"
+            title = "Should Munich host the Olympic games?"
             description =
-                "Here you can find the results of the current election. Et magnis dis parturient montes nascetur ridiculus mus. Interdum tortor ligula congue sollicitudin erat viverra ac. Accumsan maecenas potenti ultricies habitant morbi senectus netus. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
+                "The last time Munich hosted the Games, in 1972, the event left a lasting mark on the city: architectural innovation, improved infrastructure, and a culture of openness which Munich is still well-known for fifty years later. Today, as Munich considers a new application for one of the years 2036, 2040 or 2044, the implications once again reach far beyond sport: long-term urban development, transport infrastructure, environmental impact, economic investment, and the international visibility of Munich. These are matters that extend far beyond a single event; they influence the city for decades.\n" +
+                        "For this reason, the upcoming petition plays a central role. The city has committed to ensuring that the application is anchored in a transparent process. Participating in the vote means taking an active role in shaping the future of the city. Whether you view the Olympic project with optimism, caution, or skepticism, your perspective deserves to be represented in the final outcome. A clear and broad voter turnout strengthens the legitimacy of the decision and ensures that it reflects the will of the citizens as a whole.\n" +
+                        "So, don't forget to participate in the petition - either at your polling place on Sunday or even beforehand by absentee ballot."
             createdAt = LocalDateTime.now().toKotlinLocalDateTime()
             createdBy = munich.id
         }
         val post2 = PostDAO.new {
-            title = "Lorem ipsum dolor sit amet"
+            title = "Fully autonomous subways"
             description =
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                "The idea of fully autonomous subways raises both excitement and concern. On one hand, driverless trains could improve efficiency, reduce delays, and operate more safely through advanced sensors and automation. On the other hand, many worry about technical failures, cybersecurity risks, and the loss of human presence during emergencies. Whether subways should run without a human ultimately depends on balancing innovation with safety, trust, and the needs of passengers." +
+                        "What do you think about it? Can you imagine to take a fully autonomous subway?"
             createdAt = LocalDateTime.now().minusDays(1).toKotlinLocalDateTime()
             createdBy = munich.id
         }
         val post3 = PostDAO.new {
-            title = "Quisque faucibus ex sapien vitae pellentesque sem placerat"
+            title = "District commitee of Schwabing"
             description =
-                "In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+                "This Friday, there will be the next meeting of the district committee of Schwabing. One important point of the meeting will be the increasing shortage of living space in our district and on how we as the district committee can tackle this problem;" +
+                        "you can find the whole agenda on our website. Please note that the meeting is open to everyone, we are always happy about attendees, independent on whether you just want to actively listen or even contribute to finding solutions to the issues in our district." +
+                        "If there are further topics which you want to discuss in the next meeting, feel free to write as an email or contact us in some other way (for detailed information, please see our website)."
             createdAt = LocalDateTime.now().minusDays(3).toKotlinLocalDateTime()
             createdBy = user1.id
         }
