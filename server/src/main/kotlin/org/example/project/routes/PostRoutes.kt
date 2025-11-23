@@ -44,6 +44,5 @@ fun Route.postRoutes() {
                 call.respond(status = HttpStatusCode.Created, message = post)
             }
         }
-
     }
 }
